@@ -11,7 +11,7 @@ export class AppComponent {
       resolve('stable');
     }, 2000);
   });
-  
+
   servers = [
     {
       instanceType: 'medium',
