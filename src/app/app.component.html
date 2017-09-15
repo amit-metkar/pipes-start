@@ -1,28 +1,27 @@
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <label for="filter">Filter</label>
-      <input type="text" id="filter" name="filter" [(ngModel)]="filterString">
+    <div class="row">
+        <div class="col-xs-12">
+            <label for="filter">Filter</label>
+            <input type="text" id="filter" name="filter" [(ngModel)]="filterString">
+        </div>
+        <hr>
+        <div class="col-xs-12">
+            <button class="btn btn-primary" (click)="addServer()">Add Server</button>
+        </div>
+        <hr>
+        <h2>App Status: {{ appStatus | async }}</h2>
     </div>
     <hr>
-    <div class="col-xs-12">
-        <button class="btn btn-primary" (click)="addServer()">Add Server</button>
-    </div>
-    <hr>
-    <h2>App Status: {{ appStatus | async }}</h2>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let server of servers | filter:filterString:'status'" [ngClass]="getStatusClasses(server)">
-          <span class="badge">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let server of servers | filter:filterString:'status' | sort:'name'" [ngClass]="getStatusClasses(server)">
+                    <span class="badge">
                       {{ server.status  }}
                     </span>
-          <strong>{{ server.name | shorten: 16 }}</strong> | {{ server.instanceType | uppercase }} | {{ server.started |
-          date: 'fullDate' | uppercase }}
-        </li>
-      </ul>
+                    <strong>{{ server.name | shorten: 16 }}</strong> | {{ server.instanceType | uppercase | reverse }} | {{ server.started | date: 'fullDate' | uppercase }}
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </div>
