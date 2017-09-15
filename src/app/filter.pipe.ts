@@ -14,7 +14,7 @@ export class FilterPipe implements PipeTransform {
       return value;
     }
     const filterResult = [];
-    for (let obj of value) {
+    for (const obj of value) {
       if (obj[propName] === filter) {
         filterResult.push(obj);
       }
